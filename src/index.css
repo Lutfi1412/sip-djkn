@@ -1,0 +1,220 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   Design tokens — diambil dari "pallete warna" SIP DJKN
+   ============================================================ */
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* 01 Tombol & aksi */
+  --color-primary: #175ea8;
+  --color-primary-hover: #124c81;
+  --color-primary-pressed: #123a60;
+  --color-soft: #e7f0fc;
+  --color-focus: #216bc4;
+  --color-disabled: #e5ebf3;
+  --color-disabled-ink: #62738a;
+
+  /* 02 Background, card & navigasi */
+  --color-page: #f6f8fc;
+  --color-subtle: #f2f7fd;
+  --color-navy: #123a60;
+  --color-brand: #216bc4;
+  --color-sip-yellow: #f5c915;
+  --color-sip-lime: #91bf30;
+
+  /* 03 Teks & garis */
+  --color-ink: #172b46;
+  --color-muted: #62738a;
+  --color-line: #e5ebf3;
+  --color-line-strong: #cbd5e1;
+
+  /* 04 Badge & umpan balik */
+  --color-ok: #18704b;
+  --color-ok-bg: #e8f6ed;
+  --color-warn: #8a5309;
+  --color-warn-bg: #fff5d9;
+  --color-bad: #b93838;
+  --color-bad-bg: #fff0f0;
+
+  /* 05 Warna yang dipakai di layar */
+  --color-canvas: #e9e9e9;
+  --color-thead: #edf3fa;
+  --color-row: #f8fafd;
+  --color-detail: #f7f9fc;
+  --color-divider: #e3ebf4;
+  --color-role: #fdce01;
+  --color-link: #1b58ad;
+  --color-scrim: #0b1c32;
+  --color-notif: #dc2626;
+  --color-panel-ink: #172c49;
+  --color-panel-muted: #586c85;
+  --color-title: #1a4e8c;
+
+  /* 06 Status */
+  --color-st-new-bg: #e8f1fe;
+  --color-st-new: #174d96;
+
+  /* 07 Grafik & peta */
+  --color-c-blue: #215db8;
+  --color-c-teal: #07837b;
+  --color-c-teal-soft: #9adcd2;
+  --color-c-purple: #7755ca;
+  --color-c-amber: #b77718;
+  --color-c-slate: #788aa5;
+  --color-c-grid: #e4ebf5;
+  --color-c-map: #d9e4f0;
+  --color-map-a: #174a9b;
+  --color-map-b: #268660;
+  --color-map-c: #b67012;
+  --color-map-d: #6b50b8;
+
+  --shadow-card: 0 1px 2px rgb(18 58 96 / 0.04), 0 4px 16px rgb(18 58 96 / 0.04);
+  --shadow-pop: 0 12px 40px rgb(11 28 50 / 0.18);
+
+  --animate-fade: fade 0.25s ease-out both;
+  --animate-rise: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+  html {
+    background: var(--color-canvas);
+  }
+  body {
+    margin: 0;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  ::selection {
+    background: #cfe2fa;
+  }
+}
+
+/* Input tanggal: indikator bawaan diperluas agar seluruh field bisa diklik */
+.date-input {
+  position: relative;
+}
+.date-input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Scrollbar tabel */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+/* ============ SweetAlert2 — mengikuti palet SIP ============ */
+.swal2-container {
+  font-family: var(--font-sans);
+}
+.swal2-popup.sip-swal {
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  box-shadow: var(--shadow-pop);
+  color: var(--color-ink);
+}
+.sip-swal .swal2-title {
+  color: var(--color-ink);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.sip-swal .swal2-html-container {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.sip-swal-confirm,
+.sip-swal-cancel {
+  border-radius: 10px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0 0.25rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+.sip-swal-confirm {
+  background: var(--color-primary);
+  color: #fff;
+  border: 1px solid var(--color-primary);
+}
+.sip-swal-confirm:hover {
+  background: var(--color-primary-hover);
+}
+.sip-swal-cancel {
+  background: #fff;
+  color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+}
+.sip-swal-cancel:hover {
+  background: var(--color-soft);
+}
+.sip-swal-danger {
+  background: var(--color-bad);
+  border-color: var(--color-bad);
+}
+.sip-swal-danger:hover {
+  background: #9f2d2d;
+}
+.swal2-popup.sip-swal-toast {
+  border-radius: 12px;
+  box-shadow: var(--shadow-pop);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+}
+.sip-swal-toast .swal2-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.sip-swal-toast .swal2-timer-progress-bar {
+  background: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
