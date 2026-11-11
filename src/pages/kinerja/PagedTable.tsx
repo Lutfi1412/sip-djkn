@@ -15,12 +15,13 @@ interface Props<T> {
   columns: Column<T>[]
   pageSize?: number
   minWidth?: number
+  className?: string
 }
 
 const ALIGN = { left: 'text-left', center: 'text-center', right: 'text-right' }
 
 /** Tabel dengan pagination Sebelumnya/Selanjutnya, gaya kartu Kinerja */
-export function PagedTable<T>({ title, rows, columns, pageSize = 5, minWidth = 720 }: Props<T>) {
+export function PagedTable<T>({ title, rows, columns, pageSize = 5, minWidth = 720, className }: Props<T>) {
   const [page, setPage] = useState(1)
   const pageCount = Math.max(1, Math.ceil(rows.length / pageSize))
   const current = Math.min(page, pageCount)
@@ -28,7 +29,7 @@ export function PagedTable<T>({ title, rows, columns, pageSize = 5, minWidth = 7
   const visible = rows.slice(start, start + pageSize)
 
   return (
-    <Card title={title}>
+    <Card title={title} className={className}>
       <div className="thin-scroll overflow-x-auto rounded-lg">
         <table className="w-full border-collapse text-left text-[11px]" style={{ minWidth }}>
           <thead>

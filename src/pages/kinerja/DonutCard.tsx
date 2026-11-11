@@ -20,15 +20,16 @@ interface Props {
   ariaLabel: string
   /** persen tiap segmen untuk tampilan tengah saat hover */
   showPct?: boolean
+  className?: string
 }
 
 /** Kartu donut + legenda. Hover pada segmen atau legenda saling tersinkron. */
-export function DonutCard({ title, subtitle, items, centerValue, centerUnit, ariaLabel, showPct = true }: Props) {
+export function DonutCard({ title, subtitle, items, centerValue, centerUnit, ariaLabel, showPct = true, className }: Props) {
   const [hover, setHover] = useState<number | null>(null)
   const total = items.reduce((a, b) => a + b.value, 0) || 1
 
   return (
-    <Card title={title} subtitle={subtitle}>
+    <Card title={title} subtitle={subtitle} className={className}>
       <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-center">
         <Donut
           ariaLabel={ariaLabel}

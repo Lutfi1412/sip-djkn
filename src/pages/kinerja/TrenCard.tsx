@@ -7,9 +7,9 @@ import { Card } from './Card'
 const MARGIN = { top: 14, right: 14, left: 0, bottom: 0 }
 const AXIS = { fontSize: 10, fill: '#62738a' }
 
-export function TrenCard({ data }: { data: KinerjaData }) {
+export function TrenCard({ data, className }: { data: KinerjaData; className?: string }) {
   return (
-    <Card title="Tren nilai hasil penilaian" subtitle={`Jan–Des ${data.tahun} · Nilai dalam Miliar`}>
+    <Card title="Tren nilai hasil penilaian" subtitle={`Jan–Des ${data.tahun} · Nilai dalam Miliar`} className={className}>
       <p className="mb-1 text-[11px] font-semibold text-c-blue">Nilai penilaian</p>
       <div className="h-[170px]">
         <ResponsiveContainer width="100%" height="100%">

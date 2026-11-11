@@ -26,7 +26,9 @@ export function AppLayout() {
       <Sidebar collapsed={collapsed} mobileOpen={mobileOpen} onNavigate={() => setMobileOpen(false)} />
 
       <div className={`transition-[padding] duration-300 ${collapsed ? 'lg:pl-[76px]' : 'lg:pl-[260px]'}`}>
-        <Topbar onToggleSidebar={toggle} />
+        <div className="sticky top-0 z-30 -mx-2 -mt-2 bg-canvas px-2 pt-2 lg:-mx-3 lg:-mt-3 lg:px-3 lg:pt-3">
+          <Topbar onToggleSidebar={toggle} />
+        </div>
         <main key={pathname} className="animate-rise px-1 pb-4 pt-6 sm:px-2">
           <Outlet />
         </main>

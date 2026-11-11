@@ -1,22 +1,25 @@
-import { useState } from 'react'
-import type { KinerjaData } from '../../data/kinerjaData'
-import { fmtNum } from '../../lib/format'
-import { Card } from './Card'
-import { DonutCard } from './DonutCard'
-import { RegionMap } from './RegionMap'
-import { TrenCard } from './TrenCard'
+import { useState } from "react";
+import type { KinerjaData } from "../../data/kinerjaData";
+import { fmtNum } from "../../lib/format";
+import { Card } from "./Card";
+import { DonutCard } from "./DonutCard";
+import { RegionMap } from "./RegionMap";
+import { TrenCard } from "./TrenCard";
 
 function Distribusi({ data }: { data: KinerjaData }) {
-  const [hover, setHover] = useState<number | null>(null)
+  const [hover, setHover] = useState<number | null>(null);
   return (
-    <Card title="Distribusi nilai hasil penilaian" subtitle="Persentase dari seluruh baris nilai wajar">
+    <Card
+      title="Distribusi nilai hasil penilaian"
+      subtitle="Persentase dari seluruh baris nilai wajar"
+    >
       <ul className="space-y-3.5">
         {data.distribusi.map((d, i) => (
           <li
             key={d.label}
             onMouseEnter={() => setHover(i)}
             onMouseLeave={() => setHover(null)}
-            className={`cursor-default transition-opacity ${hover !== null && hover !== i ? 'opacity-50' : ''}`}
+            className={`cursor-default transition-opacity ${hover !== null && hover !== i ? "opacity-50" : ""}`}
           >
             <div className="flex items-center justify-between text-[11px] text-ink">
               <span className="font-medium">{d.label}</span>
@@ -32,22 +35,25 @@ function Distribusi({ data }: { data: KinerjaData }) {
         ))}
       </ul>
     </Card>
-  )
+  );
 }
 
 function GrafikObjek({ data }: { data: KinerjaData }) {
-  const [hover, setHover] = useState<number | null>(null)
-  const total = data.objek.reduce((a, b) => a + b.count, 0)
-  const max = Math.max(...data.objek.map((o) => o.count), 1) * 1.09
+  const [hover, setHover] = useState<number | null>(null);
+  const total = data.objek.reduce((a, b) => a + b.count, 0);
+  const max = Math.max(...data.objek.map((o) => o.count), 1) * 1.09;
   return (
-    <Card title="Grafik objek penilaian" subtitle={`${total} objek menurut kategori`}>
+    <Card
+      title="Grafik objek penilaian"
+      subtitle={`${total} objek menurut kategori`}
+    >
       <ul className="space-y-4">
         {data.objek.map((o, i) => (
           <li
             key={o.label}
             onMouseEnter={() => setHover(i)}
             onMouseLeave={() => setHover(null)}
-            className={`cursor-default transition-opacity ${hover !== null && hover !== i ? 'opacity-50' : ''}`}
+            className={`cursor-default transition-opacity ${hover !== null && hover !== i ? "opacity-50" : ""}`}
           >
             <div className="flex items-center justify-between text-[11px] text-ink">
               <span className="font-semibold">{o.label}</span>
@@ -56,22 +62,25 @@ function GrafikObjek({ data }: { data: KinerjaData }) {
             <div className="mt-1.5 h-[6px] rounded-full bg-c-grid">
               <div
                 className="h-full rounded-full transition-[width] duration-700 ease-out"
-                style={{ width: `${(o.count / max) * 100}%`, background: o.color }}
+                style={{
+                  width: `${(o.count / max) * 100}%`,
+                  background: o.color,
+                }}
               />
             </div>
           </li>
         ))}
       </ul>
     </Card>
-  )
+  );
 }
 
 export function RingkasanTab({ data }: { data: KinerjaData }) {
-  const total = data.kpi.totalNilai
+  const total = data.kpi.totalNilai;
   return (
     <div className="space-y-4">
       <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-        <TrenCard data={data} />
+        <TrenCard data={data} className="rounded-tl-none" />
         <Distribusi data={data} />
       </div>
 
@@ -123,5 +132,5 @@ export function RingkasanTab({ data }: { data: KinerjaData }) {
         />
       </div>
     </div>
-  )
+  );
 }

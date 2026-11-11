@@ -50,7 +50,7 @@ export function BebanKerjaTab({ filter }: { filter: KinerjaFilter }) {
 
   return (
     <div className="space-y-4">
-      <PagedTable title="Matriks beban kerja" rows={byJenjang(byNama(MATRIKS_BEBAN))} columns={matriksCols} minWidth={860} />
+      <PagedTable title="Matriks beban kerja" className="rounded-tl-none" rows={byJenjang(byNama(MATRIKS_BEBAN))} columns={matriksCols} minWidth={860} />
       <PagedTable title="Norma waktu penilaian" rows={byNama(NORMA_WAKTU)} columns={normaCols} minWidth={560} />
       <PagedTable title="Bantuan tenaga penilai" rows={byJenjang(byNama(BANTUAN_TENAGA))} columns={bantuanCols} minWidth={1060} />
     </div>

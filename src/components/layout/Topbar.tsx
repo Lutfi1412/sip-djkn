@@ -36,7 +36,7 @@ export function Topbar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   }, [open])
 
   return (
-    <header className="sticky top-2 z-30 flex h-14 items-center justify-between gap-3 rounded-2xl bg-navy px-4 text-white shadow-md lg:top-3">
+    <header className="flex h-14 items-center justify-between gap-3 rounded-2xl bg-navy px-4 text-white shadow-md">
       <div className="flex min-w-0 items-center gap-3">
         <button
           type="button"

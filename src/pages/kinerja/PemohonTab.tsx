@@ -9,6 +9,7 @@ export function PemohonTab({ data }: { data: KinerjaData }) {
     <div className="grid gap-4 xl:grid-cols-2">
       <DonutCard
         title="Komposisi pemohon"
+        className="rounded-tl-none"
         subtitle={`Sumber agregat · ${fmtNum(pemohon.totalLaporan)} laporan · Hanya filter unit`}
         ariaLabel="Donut komposisi pemohon"
         centerValue={fmtNum(pemohon.totalLaporan)}
